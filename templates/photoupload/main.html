@@ -5,10 +5,10 @@
         <title>Photo Album</title>
     </head>
     <body>
-    {% if documents %}
+    {% if pictures %}
         <ul>
-        {% for document in documents %}
-            <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+        {% for picture in pictures %}
+            <li><a href="{{ picture.picfile.url }}">{{ picture.picfile.name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
@@ -19,10 +19,10 @@
         <form action="{% url 'list' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <p>{{ form.non_field_errors }}</p>
-            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+            <p>{{ form.picfie.label_tag }} {{ form.picfile.help_text }}</p>
             <p>
-                {{ form.docfile.errors }}
-                {{ form.docfile }}
+                {{ form.picfile.errors }}
+                {{ form.picfile }}
             </p>
             <p><input type="submit" value="Upload" /></p>
         </form>

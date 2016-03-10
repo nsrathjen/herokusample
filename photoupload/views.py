@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from herokusample.photoupload.models import Picture
-from herokusample.photoupload.forms import PictureForm
+from photoupload.models import Picture
+from photoupload.forms import PictureForm
 
 # Create your views here.
 def list_pictures(request):
@@ -10,7 +10,7 @@ def list_pictures(request):
         newpic = Picture(picfile = request.FILES['picfile'])
         newpic.save()
 
-    if request.method == 'GET':
+    else:
         form = PictureForm()
 
     pictures = Picture.objects.all()
