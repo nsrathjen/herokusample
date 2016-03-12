@@ -1,12 +1,24 @@
-1. create django project locally
+1. create a django project locally
 
-2. create Procfile in django root:
+2. create a "Procfile" in django root:
+	This must be located at the top level (that is, in the same folder as your manage.py script)
+	The file should be called "Procfile"with no extension (Windows users beware, the OS will often hide your file extensions, and most editors will add a .txt to the file, so this step can cause problems)
+	The file should contain exactly the following (except with "myproject.wsgi" replaced appropriately, see example for help)
 	web: gunicorn myproject.wsgi --log-file -
 
-2a. Create runtime.txt in django root:
-	python-3.4.3u
+2a. Create a runtime.txt file in django root:
+	Again, the location and name of the file matters a great deal.
+	python-3.4.3
+	
+2b. Create a requirements.txt file in django root:
+	The following would be the bare minimum contents, but depending on your project you may need to add more
+	Django==1.8.8
+	dj-database-url==0.4.0
+	gunicorn==19.4.5
+	psycopg2==2.6.1
 
 3. install gunicorn with pip
+	Simply run "pip install gunicorn" in your command line. If "pip" isn't found, be sure Python and its scripts folder are on your Path.
 
 4. install dj_database_url with pip
 
@@ -25,13 +37,13 @@ DATABASES['default'].update(db_from_env)
 
 6. if you need static files follow the directions to set up whitenoise
 
-7. go to getting started with python on heroku
+7. go to Getting Started with Python on Heroku
 
-8. install the toolbelt (it says you need ruby but it will install ruby if you don't have it)
+8. Make a heroku account and install the toolbelt (it says you need ruby but it will install ruby if you don't have it)
 
-9. Skip prepare the app
+9. Skip prepare the app, but if you haven't already, go to your Django root folder and do "git init" followed by "git add ." and "git commit"
 
-10. Do heroku create to create a new app. Give credentials
+10. Run "heroku create" in your command line to create a new app. Be sure you're in the django root folder when you do. This may take a minute, but you'll need to input your username/password so don't walk away.
 
 11. git push heroku master
 
