@@ -2,7 +2,7 @@
 
 2. create a "Procfile" in django root:
 	This must be located at the top level (that is, in the same folder as your manage.py script)
-	The file should be called "Procfile"with no extension (Windows users beware, the OS will often hide your file extensions, and most editors will add a .txt to the file, so this step can cause problems)
+	The file should be called "Procfile" with no extension (Windows users beware, the OS will often hide your file extensions, and most editors will add a .txt to the file, so this step can cause problems)
 	The file should contain exactly the following (except with "myproject.wsgi" replaced appropriately, see example for help)
 	web: gunicorn myproject.wsgi --log-file -
 
@@ -24,20 +24,21 @@
 
 5. update settings.py:
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+if os.environ.get('DATABASE_URL'):
+	import dj_database_url
+	db_from_env = dj_database_url.config(conn_max_age=500)
+	DATABASES['default'].update(db_from_env)
+else:
+	DATABASES = {
+	    'default': {
+        	'ENGINE': 'django.db.backends.sqlite3',
+        	'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    		}
+	}
 
 6. if you need static files follow the directions to set up whitenoise
 
-7. go to Getting Started with Python on Heroku
+7. go to Getting Started with Python on Heroku (https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
 
 8. Make a heroku account and install the toolbelt (it says you need ruby but it will install ruby if you don't have it)
 
