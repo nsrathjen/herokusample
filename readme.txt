@@ -38,8 +38,9 @@ if os.environ.get('DATABASE_URL'):
 	import dj_database_url
 	db_from_env = dj_database_url.config(conn_max_age=500)
 	DATABASES['default'].update(db_from_env)
+This snippet of code uses your local database (in this case, an sqlite db in BASE_DIR) when running with the development server, and Heroku's Postgres database when running there. (See also step 15)
 
-8. if you need static files follow the directions to set up whitenoise
+8. if you need static files, follow the directions to set up whitenoise (https://devcenter.heroku.com/articles/django-assets)
 
 9. go to Getting Started with Python on Heroku (https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
 
@@ -53,6 +54,6 @@ if os.environ.get('DATABASE_URL'):
 
 14. heroku run "python manage.py makemigrations [appname] && python manage.py migrate [appname]" (INCLUDING THE QUOTES)
 
-16. To connect yourself to the heroku database in case something goes wrong -
-	DATABASE_URL=$(heroku config:get DATABASE_URL -a whatever_your_app_name_is)
+15. To connect yourself to the heroku database in case something goes wrong, grab the url from heroku config and define the DATABASE_URL environment variable -
+	DATABASE_URL=$(heroku config:get DATABASE_URL -a [appname])
 	export DATABASE_URL
