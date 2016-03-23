@@ -40,7 +40,7 @@ if os.environ.get('DATABASE_URL'):
 	DATABASES['default'].update(db_from_env)
 This snippet of code uses your local database (in this case, an sqlite db in BASE_DIR) when running with the development server, and Heroku's Postgres database when running there. (See also step 15)
 
-8. if you need static files, follow the directions to set up whitenoise (https://devcenter.heroku.com/articles/django-assets)
+8. if you need static files, follow the directions to set up whitenoise (https://devcenter.heroku.com/articles/django-assets) NB: DO NOT add the STATICFILES_DIRS setting to settings.py (so just add STATIC_ROOT and STATIC_URL); all it defines is _additional_ directories for static files besides STATIC_ROOT, so it isn't necessary, and has been seen to actually break your deployment in some cases.
 
 9. go to Getting Started with Python on Heroku (https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
 
