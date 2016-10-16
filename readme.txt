@@ -18,10 +18,11 @@
 
 6. Create a requirements.txt file in django root:
 	The following would be the bare minimum contents, but depending on your project you may need to add more
-	Django==1.8.8
 	dj-database-url==0.4.0
+	Django==1.8.8
 	gunicorn==19.4.5
 	psycopg2==2.6.1
+	whitenoise==2.0.6
 
 
 
